@@ -17,8 +17,9 @@
 # init
 # #########################################################
 
+# read config
 config_file=$HOME/.config/toggletheme.cfg
-current_theme=$(cat $config_file)
+current_theme=$(kreadconfig5 --file $config_file --group General --key CurrentTheme)
 
 switch_wallpaper="y"
 darker_wallpaper="$HOME/Bilder/Wallpapers/ventura-dark.jpg"
@@ -178,7 +179,9 @@ switchColorscheme $new_colorscheme
 switchShadow $new_shadow
 switchVSCode $new_vscode
 switchKonsole $new_konsole
-updateConfig $new_theme
+
+# write config
+kwriteconfig5 --file $config_file --group General --key CurrentTheme $new_theme
 
 # #########################################################
 # END OF SCRIPT
