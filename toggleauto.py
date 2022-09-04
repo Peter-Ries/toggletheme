@@ -1,27 +1,26 @@
 #!/bin/python3
 
-import pytz
-from datetime import datetime
-from astral import LocationInfo
-from astral.sun import sun
+import datetime
+from suntime import Sun, SunTimeException
 
-loc = LocationInfo(name='HAJ', region='NDS, DE', timezone='Europe/Berlin', latitude=52.13, longitude=-8.7)
-print(loc)
-print(loc.observer)
+latitude = 52.13
+longitude = 8.7
 
-now=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-print(f"It's      : {now}")
+sun = Sun(latitude, longitude)
 
-s = sun(loc.observer, date=now, tzinfo=loc.timezone)
-for key in ['dawn', 'dusk', 'noon', 'sunrise', 'sunset']:
-    #print(f'{key:10s}:', s[key])
-    if key == 'dawn':
-        dawn=s[key]
-    if key == 'dusk':
-        dusk=s[key]
+# Get today's sunrise and sunset in UTC
+today_sr = sun.get_sunrise_time()
+today_ss = sun.get_sunset_time()
+print('Today at Warsaw the sun raised at {} and get down at {} UTC'.
+      format(today_sr.strftime('%H:%M'), today_ss.strftime('%H:%M')))
 
-print(dusk)
-print(dawn)
+# On a special date in your machine's local time zone
+abd = datetime.date(2014, 10, 3)
+abd_sr = sun.get_local_sunrise_time(abd)
+abd_ss = sun.get_local_sunset_time(abd)
+print('On {} the sun at Warsaw raised at {} and get down at {}.'.
+      format(abd, abd_sr.strftime('%H:%M'), abd_ss.strftime('%H:%M')))
+
 
 #if now > dusk and now < dawn:
     #print("use light theme")
