@@ -50,8 +50,10 @@ switch_vscode="y"
 
 switchWallpaper() {
     if [[ $switch_wallpaper == "y" ]] ; then
+        #
         # switch wallpaper
         plasma-apply-wallpaperimage $1
+        #
         # switch lockscreen wallpaper
         kwriteconfig5 --file kscreenlockerrc --group Greeter --group Wallpaper --group org.kde.image --group General --key Image "file://$1"
     fi
@@ -68,6 +70,7 @@ switchShadow() {
         #
         # set ShadowColor (R,G,B) in $HOME/.config/breezerc
         kwriteconfig5 --file breezerc --group Common --key ShadowColor $1
+        #
         # reload config to apply
         qdbus org.kde.KWin /KWin org.kde.KWin.reconfigure
     fi
@@ -107,10 +110,6 @@ switchKonsole () {
     fi
 }
 
-updateConfig () {
-    echo $1 > $config_file
-}
-
 
 
 # #########################################################
@@ -118,7 +117,6 @@ updateConfig () {
 # #########################################################
 
 if [[ $1 == "" ]] ; then
-
     #
     # no parameter - only toggle light/dark
     case $current_theme in
@@ -129,9 +127,7 @@ if [[ $1 == "" ]] ; then
             new_theme="light"
             ;;
     esac
-
 else
-
     #
     # parameter -> evaluate
     case $1 in
@@ -143,7 +139,6 @@ else
             exit 1
             ;;
     esac
-
 fi
 
 case $new_theme in
@@ -180,6 +175,7 @@ switchShadow $new_shadow
 switchVSCode $new_vscode
 switchKonsole $new_konsole
 
+#
 # write config
 kwriteconfig5 --file $config_file --group General --key CurrentTheme $new_theme
 
