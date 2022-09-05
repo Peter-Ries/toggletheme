@@ -6,10 +6,6 @@
 # toggletheme
 #   switch wallpaper, colorscheme, ... between dark / light
 #
-#   ToDo:
-#       vs-code
-#       auto parameter for switch on sunrise/sundown
-#
 # ---------------------------------------------------------
 
 
