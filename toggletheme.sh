@@ -158,7 +158,8 @@ case $new_theme in
     dark)
         new_wallpaper=$dark_wallpaper
         new_colorscheme=$dark_colorscheme
-        new_shadow=$dark_shadow
+        # new_shadow=$dark_shadow
+        new_shadow=$darker_shadow
         new_icons=$dark_icons
         new_konsole=$dark_konsole
         new_vscode=$new_theme
