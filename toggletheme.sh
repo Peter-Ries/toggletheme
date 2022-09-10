@@ -27,14 +27,14 @@
 CONFIG_FILE=$HOME/.config/toggletheme.cfg
 CURRENT_THEME=$(kreadconfig5 --file $CONFIG_FILE --group General --key CurrentTheme)
 
-# colors for window border shadow
-BLACK="0,0,0" #000000
-BLUE="61,174,233" #3daee9
-ORANGE="246,116,0" #ffa200
+# RGB colors for window border shadow
+RGB_BLACK="0,0,0" #000000
+RGB_BLUE="61,174,233" #3daee9
+RGB_ORANGE="246,116,0" #ffa200
 
-# colors for accent
-ACCENTBLUE="#3daee9"
-ACCENTORANGE="#ffa200"
+# HEX colors for accent
+HEX_BLUE="#3daee9"
+HEX_ORANGE="#ffa200"
 
 # picture for wallpaper all monitors and lockscreen
 SWITCH_WALLPAPER="y"
@@ -73,16 +73,20 @@ LIGHT_COLORSCHEME="BreezeClassic"
 DARK_COLORSCHEME="BreezeClassicDarkInactiveDimmed"
 DARKER_COLORSCHEME="KritaDarkOrange"
 #
-SWITCH_ACCENTCOLOR="y"
-LIGHT_ACCENTCOLOR=$ACCENTBLUE
-DARK_ACCENTCOLOR=$ACCENTBLUE
-DARKER_ACCENTCOLOR=$ACCENTORANGE
+# SWITCH_ACCENTCOLOR:
+#   t - use theme color
+#   w - from wallpaper main color
+#   c - color (uses values you set in *_ACCENTCOLOR)
+SWITCH_ACCENTCOLOR="t"
+LIGHT_ACCENTCOLOR=$HEX_BLUE
+DARK_ACCENTCOLOR=$HEX_BLUE
+DARKER_ACCENTCOLOR=$HEX_ORANGE
 
 # window border shadow color
 SWITCH_SHADOW="y"
-LIGHT_SHADOW=$BLACK
-DARK_SHADOW=$ORANGE
-DARKER_SHADOW=$ORANGE
+LIGHT_SHADOW=$RGB_BLACK
+DARK_SHADOW=$RGB_ORANGE
+DARKER_SHADOW=$RGB_ORANGE
 
 # icon set
 SWITCH_ICONS="y"
@@ -141,9 +145,22 @@ switchColorscheme() {
     if [[ $SWITCH_COLORSCHEME == "y" ]] ; then
         plasma-apply-colorscheme $1
     fi
-    if [[ $SWITCH_ACCENTCOLOR == "y" ]] ; then
-        plasma-apply-colorscheme --accent-color $2
-    fi
+
+    #
+    # switch accentcolor only of switch is "y" AND accentcolor is set otherwise use theme accent color
+    # NOT WORKING YET...
+    #     if [[ $SWITCH_ACCENTCOLOR == "c" ]] && [[ $2 != "" ]] ; then
+    #         plasma-apply-colorscheme --accent-color $2
+    #         kwriteconfig5 --file kdeglobals --group General --key accentColorFromWallpaper "false"
+    #     fi
+    #     if [[ $SWITCH_ACCENTCOLOR == "w" ]] ; then
+    #         kwriteconfig5 --file kdeglobals --group General --key AccentColor --delete
+    #         kwriteconfig5 --file kdeglobals --group General --key accentColorFromWallpaper "true"
+    #     fi
+    #     if [[ $SWITCH_ACCENTCOLOR == "t" ]] ; then
+    #         kwriteconfig5 --file kdeglobals --group General --key AccentColor --delete
+    #         kwriteconfig5 --file kdeglobals --group General --key accentColorFromWallpaper "false"
+    #     fi
 }
 
 switchShadow() {
