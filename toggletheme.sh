@@ -66,7 +66,7 @@ DARKER_COLORSCHEME="KritaDarkOrange"
 # window border shadow color
 SWITCH_SHADOW="y"
 LIGHT_SHADOW=$BLACK
-DARK_SHADOW=$BLUE
+DARK_SHADOW=$ORANGE
 DARKER_SHADOW=$ORANGE
 
 # icon set
@@ -154,19 +154,8 @@ switchKonsole () {
 
 switchVSCode () {
     if [[ $SWITCH_VSCODE == "y" ]] ; then
-#         #
-#         # hard replacement of colorTheme string in settings.json
-#         case $1 in
-#             light)
-#                 $(sed -i -e "s/\"workbench.colorTheme.*$/\"workbench.colorTheme\": \"Default Light+\",/" ~/.config/Code/User/settings.json)
-#                 ;;
-#             dark)
-#                 $(sed -i -e "s/\"workbench.colorTheme.*$/\"workbench.colorTheme\": \"Breeze Dark\",/" ~/.config/Code/User/settings.json)
-#                 ;;
-#             darker)
-#                 $(sed -i -e "s/\"workbench.colorTheme.*$/\"workbench.colorTheme\": \"Breeze Dark\",/" ~/.config/Code/User/settings.json)
-#                 ;;
-#         esac
+        #
+        # modify settings directly with sed in ~/.config/Code/User/settings.json
         $(sed -i -e "s/\"workbench.colorTheme.*$/\"workbench.colorTheme\": \"$NEW_VSCODETHEME\",/" ~/.config/Code/User/settings.json)
     fi
 }
