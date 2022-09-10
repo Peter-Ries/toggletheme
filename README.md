@@ -14,10 +14,12 @@ Just put it somewhere in your path. Config file will be created on first invokat
 
 ## what is supported?
 
-- plasma colorscheme
 - wallpaper (all monitors)
+- plasma style
+- overall look and feel
+- plasma colorscheme
 - lockscreen wallpaper
-- window decoration shadow colorscheme
+- window decoration shadow color
 - icon theme
 - konsole profile (profiles need to be created first)
 - vs code
