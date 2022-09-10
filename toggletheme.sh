@@ -32,6 +32,10 @@ BLACK="0,0,0" #000000
 BLUE="61,174,233" #3daee9
 ORANGE="246,116,0" #ffa200
 
+# colors for accent
+ACCENTBLUE="#3daee9"
+ACCENTORANGE="#ffa200"
+
 # picture for wallpaper all monitors and lockscreen
 SWITCH_WALLPAPER="y"
 LIGHT_WALLPAPER="$HOME/Bilder/Wallpapers/ventura.jpg"
@@ -57,11 +61,22 @@ LIGHT_LOOKANDFEEL="org.kde.breeze.desktop"
 DARK_LOOKANDFEEL="org.kde.breezedark.desktop"
 DARKER_LOOKANDFEEL="org.kde.breezedark.desktop"
 
+# GTK Theme
+SWITCH_GTKTHEME="y"
+LIGHT_GTKTHEME="Breeze"
+DARK_GTKTHEME="Breeze"
+DARKER_GTKTHEME="Breeze"
+
 # colorscheme
 SWITCH_COLORSCHEME="y"
 LIGHT_COLORSCHEME="BreezeClassic"
 DARK_COLORSCHEME="BreezeClassicDarkInactiveDimmed"
 DARKER_COLORSCHEME="KritaDarkOrange"
+#
+SWITCH_ACCENTCOLOR="y"
+LIGHT_ACCENTCOLOR=$ACCENTBLUE
+DARK_ACCENTCOLOR=$ACCENTBLUE
+DARKER_ACCENTCOLOR=$ACCENTORANGE
 
 # window border shadow color
 SWITCH_SHADOW="y"
@@ -116,9 +131,18 @@ switchLookandfeel() {
     fi
 }
 
+switchGtktheme() {
+    if [[ $SWITCH_GTKTHEME == "y" ]] ; then
+        qdbus org.kde.GtkConfig /GtkConfig org.kde.GtkConfig.setGtkTheme $1
+    fi
+}
+
 switchColorscheme() {
     if [[ $SWITCH_COLORSCHEME == "y" ]] ; then
         plasma-apply-colorscheme $1
+    fi
+    if [[ $SWITCH_ACCENTCOLOR == "y" ]] ; then
+        plasma-apply-colorscheme --accent-color $2
     fi
 }
 
@@ -147,7 +171,7 @@ switchKonsole () {
         IFS=" "
         PIDS=$(pidof konsole)
         for PID in $PIDS; do
-            $(qdbus org.kde.konsole-$PID /Sessions/1 org.kde.konsole.Session.setProfile $1)
+            qdbus org.kde.konsole-$PID /Sessions/1 org.kde.konsole.Session.setProfile $1
         done
     fi
 }
@@ -156,7 +180,7 @@ switchVSCode () {
     if [[ $SWITCH_VSCODE == "y" ]] ; then
         #
         # modify settings directly with sed in ~/.config/Code/User/settings.json
-        $(sed -i -e "s/\"workbench.colorTheme.*$/\"workbench.colorTheme\": \"$NEW_VSCODETHEME\",/" ~/.config/Code/User/settings.json)
+        sed -i -e "s/\"workbench.colorTheme.*$/\"workbench.colorTheme\": \"$NEW_VSCODETHEME\",/" ~/.config/Code/User/settings.json
     fi
 }
 
@@ -198,6 +222,8 @@ case $NEW_THEME in
         NEW_DESKTOPTHEME=$LIGHT_DESKTOPTHEME
         NEW_LOOKANDFEEL=$LIGHT_LOOKANDFEEL
         NEW_COLORSCHEME=$LIGHT_COLORSCHEME
+        NEW_ACCENTCOLOR=$LIGHT_ACCENTCOLOR
+        NEW_GTKTHEME=$LIGHT_GTKTHEME
         NEW_SHADOW=$LIGHT_SHADOW
         NEW_ICONS=$LIGHT_ICONS
         NEW_KONSOLE=$LIGHT_KONSOLE
@@ -207,7 +233,9 @@ case $NEW_THEME in
         NEW_WALLPAPER=$DARK_WALLPAPER
         NEW_DESKTOPTHEME=$DARK_DESKTOPTHEME
         NEW_LOOKANDFEEL=$DARK_LOOKANDFEEL
+        NEW_GTKTHEME=$DARK_GTKTHEME
         NEW_COLORSCHEME=$DARK_COLORSCHEME
+        NEW_ACCENTCOLOR=$DARK_ACCENTCOLOR
         NEW_SHADOW=$DARK_SHADOW
         NEW_ICONS=$DARK_ICONS
         NEW_KONSOLE=$DARK_KONSOLE
@@ -217,7 +245,9 @@ case $NEW_THEME in
         NEW_WALLPAPER=$DARKER_WALLPAPER
         NEW_DESKTOPTHEME=$DARKER_DESKTOPTHEME
         NEW_LOOKANDFEEL=$DARKER_LOOKANDFEEL
+        NEW_GTKTHEME=$DARKER_GTKTHEME
         NEW_COLORSCHEME=$DARKER_COLORSCHEME
+        NEW_ACCENTCOLOR=$DARKER_ACCENTCOLOR
         NEW_SHADOW=$DARKER_SHADOW
         NEW_ICONS=$DARKER_ICONS
         NEW_KONSOLE=$DARKER_KONSOLE
@@ -232,7 +262,8 @@ esac
 switchWallpaper $NEW_WALLPAPER
 switchDesktoptheme $NEW_DESKTOPTHEME
 switchLookandfeel $NEW_LOOKANDFEEL
-switchColorscheme $NEW_COLORSCHEME
+switchGtktheme $NEW_GTKTHEME
+switchColorscheme $NEW_COLORSCHEME $NEW_ACCENTCOLOR
 switchShadow $NEW_SHADOW
 switchIcons $NEW_ICONS
 switchKonsole $NEW_KONSOLE
