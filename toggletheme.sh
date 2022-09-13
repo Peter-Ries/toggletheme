@@ -104,8 +104,10 @@ DARKER_KONSOLE="Breeze"
 # vs-code colortheme
 SWITCH_VSCODE="y"
 VSCODE_LIGHTTHEME="Default Light+"
-VSCODE_DARKTHEME="Default Dark+"
-VSCODE_DARKERTHEME="Default Dark+"
+VSCODE_DARKTHEME="GitHub Dark"
+VSCODE_DARKERTHEME="GitHub Dark"
+# VSCODE_DARKTHEME="Default Dark+"
+# VSCODE_DARKERTHEME="Default Dark+"
 # VSCODE_DARKTHEME="Breeze Dark"
 # VSCODE_DARKERTHEME="Breeze Dark"
 
