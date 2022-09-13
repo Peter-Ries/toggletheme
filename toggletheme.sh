@@ -11,7 +11,8 @@
 #   - script does not check if wallpaper, vs-code theme, konsole profile exist
 #     so please check init section and switchVSCode() function
 #
-#   - as Breeze, and "Default Light+" (vs-code) are default you only need
+#   - you only need:
+#       - Simple Dark vs-code theme
 #       - the wallpaper/s
 #       - Konsole profiles for light and darker
 #       - A Breeze colortheme for vs-code
@@ -104,12 +105,8 @@ DARKER_KONSOLE="Breeze"
 # vs-code colortheme
 SWITCH_VSCODE="y"
 VSCODE_LIGHTTHEME="Default Light+"
-VSCODE_DARKTHEME="GitHub Dark"
-VSCODE_DARKERTHEME="GitHub Dark"
-# VSCODE_DARKTHEME="Default Dark+"
-# VSCODE_DARKERTHEME="Default Dark+"
-# VSCODE_DARKTHEME="Breeze Dark"
-# VSCODE_DARKERTHEME="Breeze Dark"
+VSCODE_DARKTHEME="Simple Dark"
+VSCODE_DARKERTHEME="Simple Dark"
 
 
 # #########################################################
