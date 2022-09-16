@@ -61,6 +61,8 @@ SWITCH_LOOKANDFEEL="y"
 LIGHT_LOOKANDFEEL="org.kde.breeze.desktop"
 DARK_LOOKANDFEEL="org.kde.breezedark.desktop"
 DARKER_LOOKANDFEEL="org.kde.breezedark.desktop"
+# disable or enable default breeze splashscreen
+ENABLE_SPLASHSCREEN="n"
 
 # GTK Theme
 SWITCH_GTKTHEME="y"
@@ -133,6 +135,16 @@ switchDesktoptheme() {
 switchLookandfeel() {
     if [[ $SWITCH_LOOKANDFEEL == "y" ]] ; then
         plasma-apply-lookandfeel --apply $1
+
+        # splashscreen none or breeze?
+        if [[ $ENABLE_SPLASHSCREEN == "y" ]] ; then
+            # breeze is default and has an empty ksplashrc - so delete entries
+            kwriteconfig5 --file ksplashrc --group KSplash --key Engine --delete
+            kwriteconfig5 --file ksplashrc --group KSplash --key Theme --delete
+        else
+            kwriteconfig5 --file ksplashrc --group KSplash --key Engine None
+            kwriteconfig5 --file ksplashrc --group KSplash --key Theme None
+        fi
     fi
 }
 
