@@ -44,7 +44,7 @@ SWITCH_WALLPAPER="y"
 LIGHT_WALLPAPER="$HOME/Bilder/Wallpapers/ventura.jpg"
 DARK_WALLPAPER="$HOME/Bilder/Wallpapers/ventura-dark.jpg"
 DARKER_WALLPAPER="$HOME/Bilder/Wallpapers/ventura-dark.jpg"
-BLACK_WALLPAPER="$HOME/Bilder/Wallpapers/blue-black.png"
+BLACK_WALLPAPER="$HOME/Bilder/Wallpapers/ios-blue-background.jpg"
 
 # desktoptheme - aka Plasma Style
 # SHOULD ALWAYS BE SET TO "default" and should be set initially for script to work!
@@ -113,7 +113,7 @@ SWITCH_KONSOLE="y"
 LIGHT_KONSOLE="BlackOnWhite"
 DARK_KONSOLE="Breeze"
 DARKER_KONSOLE="Breeze"
-DARKER_KONSOLE="BlackBlue"
+BLACK_KONSOLE="BlackBlue"
 
 # vs-code colortheme
 SWITCH_VSCODE="y"
@@ -248,7 +248,7 @@ else
     #
     # parameter -> evaluate
     case $1 in
-        light | dark | darker )
+        light | dark | darker | black )
             NEW_THEME=$1
             ;;
         *)
@@ -305,7 +305,7 @@ case $NEW_THEME in
         NEW_SHADOW=$BLACK_SHADOW
         NEW_ICONS=$BLACK_ICONS
         NEW_KONSOLE=$BLACK_KONSOLE
-        NEW_VSCODETHEME=$BLACK_DARKERTHEME
+        NEW_VSCODETHEME=$VSCODE_BLACKTHEME
         ;;
     *)
         echo Only light, dark, darker, black allowed as parameter.
