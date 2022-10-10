@@ -12,10 +12,10 @@
 #     so please check init section and switchVSCode() function
 #
 #   - you only need:
-#       - Simple Dark vs-code theme
-#       - the wallpaper/s
-#       - Konsole profiles for light and darker
-#       - A Breeze colortheme for vs-code
+#       - wallpaper/s for each theme
+#       - KDE colorschemes used here KritaDarkOrange, FlatRemixBlueDarkest
+#       - VS-Code themes used here: Simple Dark, Just Black
+#       - Konsole profiles for your needs
 #
 # ---------------------------------------------------------
 
@@ -31,10 +31,12 @@ CURRENT_THEME=$(kreadconfig5 --file $CONFIG_FILE --group General --key CurrentTh
 # RGB colors for window border shadow
 RGB_BLACK="0,0,0" #000000
 RGB_BLUE="61,174,233" #3daee9
+RGB_BLUE_BLACK="39,119,255" #2777ff
 RGB_ORANGE="246,116,0" #ffa200
 
 # HEX colors for accent
 HEX_BLUE="#3daee9"
+HEX_BLUE_BLACK="#2777ff"
 HEX_ORANGE="#ffa200"
 
 # picture for wallpaper all monitors and lockscreen
@@ -42,6 +44,7 @@ SWITCH_WALLPAPER="y"
 LIGHT_WALLPAPER="$HOME/Bilder/Wallpapers/ventura.jpg"
 DARK_WALLPAPER="$HOME/Bilder/Wallpapers/ventura-dark.jpg"
 DARKER_WALLPAPER="$HOME/Bilder/Wallpapers/ventura-dark.jpg"
+BLACK_WALLPAPER="$HOME/Bilder/Wallpapers/blue-black.png"
 
 # desktoptheme - aka Plasma Style
 # SHOULD ALWAYS BE SET TO "default" and should be set initially for script to work!
@@ -52,6 +55,7 @@ SWITCH_DESKTOPTHEME="y"
 LIGHT_DESKTOPTHEME="default"
 DARK_DESKTOPTHEME="default"
 DARKER_DESKTOPTHEME="default"
+BLACK_DESKTOPTHEME="default"
 
 # look-and-feel - a.k.a. Global Design
 #   org.kde.breeze.desktop
@@ -61,6 +65,7 @@ SWITCH_LOOKANDFEEL="y"
 LIGHT_LOOKANDFEEL="org.kde.breeze.desktop"
 DARK_LOOKANDFEEL="org.kde.breezedark.desktop"
 DARKER_LOOKANDFEEL="org.kde.breezedark.desktop"
+BLACK_LOOKANDFEEL="org.kde.breezedark.desktop"
 # disable or enable default breeze splashscreen
 ENABLE_SPLASHSCREEN="n"
 
@@ -69,12 +74,14 @@ SWITCH_GTKTHEME="y"
 LIGHT_GTKTHEME="Breeze"
 DARK_GTKTHEME="Breeze"
 DARKER_GTKTHEME="Breeze"
+BLACK_GTKTHEME="Breeze"
 
 # colorscheme
 SWITCH_COLORSCHEME="y"
 LIGHT_COLORSCHEME="BreezeClassic"
 DARK_COLORSCHEME="BreezeClassicDarkInactiveDimmed"
 DARKER_COLORSCHEME="KritaDarkOrange"
+BLACK_COLORSCHEME="FlatRemixBlueDarkest"
 #
 # SWITCH_ACCENTCOLOR:
 #   t - use theme color
@@ -84,18 +91,21 @@ SWITCH_ACCENTCOLOR="t"
 LIGHT_ACCENTCOLOR=$HEX_BLUE
 DARK_ACCENTCOLOR=$HEX_BLUE
 DARKER_ACCENTCOLOR=$HEX_ORANGE
+BLACK_ACCENTCOLOR=$HEX_BLUE_BLACK
 
 # window border shadow color
 SWITCH_SHADOW="y"
 LIGHT_SHADOW=$RGB_BLACK
 DARK_SHADOW=$RGB_ORANGE
 DARKER_SHADOW=$RGB_ORANGE
+BLACK_SHADOW=$RGB_BLUE_BLACK
 
 # icon set
 SWITCH_ICONS="y"
 LIGHT_ICONS="breeze"
 DARK_ICONS="breeze-dark"
 DARKER_ICONS="breeze-dark"
+BLACK_ICONS="breeze-dark"
 
 # konsole colors
 SWITCH_KONSOLE="y"
@@ -103,12 +113,14 @@ SWITCH_KONSOLE="y"
 LIGHT_KONSOLE="BlackOnWhite"
 DARK_KONSOLE="Breeze"
 DARKER_KONSOLE="Breeze"
+DARKER_KONSOLE="BlackBlue"
 
 # vs-code colortheme
 SWITCH_VSCODE="y"
 VSCODE_LIGHTTHEME="Default Light+"
 VSCODE_DARKTHEME="Simple Dark"
 VSCODE_DARKERTHEME="Simple Dark"
+VSCODE_BLACKTHEME="Just Black"
 
 
 # #########################################################
@@ -240,7 +252,7 @@ else
             NEW_THEME=$1
             ;;
         *)
-            echo Only light, dark, darker allowed as parameter.
+            echo Only light, dark, darker, black allowed as parameter.
             exit 1
             ;;
     esac
@@ -283,8 +295,20 @@ case $NEW_THEME in
         NEW_KONSOLE=$DARKER_KONSOLE
         NEW_VSCODETHEME=$VSCODE_DARKERTHEME
         ;;
+    black)
+        NEW_WALLPAPER=$BLACK_WALLPAPER
+        NEW_DESKTOPTHEME=$BLACK_DESKTOPTHEME
+        NEW_LOOKANDFEEL=$BLACK_LOOKANDFEEL
+        NEW_GTKTHEME=$BLACK_GTKTHEME
+        NEW_COLORSCHEME=$BLACK_COLORSCHEME
+        NEW_ACCENTCOLOR=$BLACK_ACCENTCOLOR
+        NEW_SHADOW=$BLACK_SHADOW
+        NEW_ICONS=$BLACK_ICONS
+        NEW_KONSOLE=$BLACK_KONSOLE
+        NEW_VSCODETHEME=$BLACK_DARKERTHEME
+        ;;
     *)
-        echo Only light, dark, darker allowed as parameter.
+        echo Only light, dark, darker, black allowed as parameter.
         exit 1
         ;;
 esac
