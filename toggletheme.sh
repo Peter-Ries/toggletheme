@@ -68,6 +68,9 @@ DARKER_LOOKANDFEEL="org.kde.breezedark.desktop"
 BLACK_LOOKANDFEEL="org.kde.breezedark.desktop"
 # disable or enable default breeze splashscreen
 ENABLE_SPLASHSCREEN="n"
+# overwrite look-and-feel task-switcher
+TASKSWITCHER_OVERWRITE="y"
+TASKSWITCHER_STYLE="thumbnail_grid"
 
 # GTK Theme
 SWITCH_GTKTHEME="y"
@@ -156,6 +159,11 @@ switchLookandfeel() {
         else
             kwriteconfig5 --file ksplashrc --group KSplash --key Engine None
             kwriteconfig5 --file ksplashrc --group KSplash --key Theme None
+        fi
+
+        # use different taskswitcher?
+        if [[ $TASKSWITCHER_OVERWRITE == "y" ]] ; then
+            kwriteconfig5 --file kwinrc --group TabBox --key LayoutName $TASKSWITCHER_STYLE
         fi
     fi
 }
