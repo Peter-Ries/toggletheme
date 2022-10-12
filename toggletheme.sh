@@ -130,7 +130,7 @@ Konsole=BlackOnWhite
 LookAndFeel=org.kde.breeze.desktop
 Shadow=0,0,0
 VSCode=Default Light+
-Wallpaper=/home/peter/Bilder/Wallpapers/light
+Wallpaper=/home/peter/Bilder/Wallpapers/wallpaper-light
 
 EOF
 
