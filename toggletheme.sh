@@ -26,6 +26,7 @@
 createTogglethemerc() {
 
 echo Creating new config file $HOME/.config/togglethemerc
+echo Please adjust settings and start script again!
 
 cat << EOF > $HOME/.config/togglethemerc
 # Colors used
@@ -41,16 +42,31 @@ cat << EOF > $HOME/.config/togglethemerc
 # HEX_BLUE_BLACK="#2777ff"
 # HEX_ORANGE="#ffa200"
 #
-# desktoptheme - aka Plasma Style
-# SHOULD ALWAYS BE SET TO "default" and should be set initially for script to work!
+#
+# ::: desktoptheme - aka Plasma Style - SHOULD ALWAYS BE SET TO "default" and should be set initially for script to work!
+# > plasma-apply-desktoptheme --list-themes
 #   default         <<<--- we need this one always to follow colorscheme
 #   breeze-dark
 #   breeze-light
 #
-# look-and-feel - a.k.a. Global Design
+#
+# ::: look-and-feel - a.k.a. Global Design
+# > plasma-apply-lookandfeel -l
 #   org.kde.breeze.desktop
 #   org.kde.breezedark.desktop
 #   org.kde.breezetwilight.desktop  <<<--- as an alternative for light
+#
+#
+# ::: colorschemes
+# > plasma-apply-colorscheme --list-schemes
+#
+#
+# ::: cursorthemes
+# > plasma-apply-cursortheme --list-themes
+#
+#
+# ::: Wallpapers
+# I recommend using links to fixed names for wallpapers instead of real filenames here
 #
 
 [General]
@@ -81,7 +97,7 @@ Konsole=BlackBlue
 LookAndFeel=org.kde.breezedark.desktop
 Shadow=39,119,255
 VSCode=Just Black
-Wallpaper=/home/peter/Bilder/Wallpapers/ios-blue-background.jpg
+Wallpaper=/home/peter/Bilder/Wallpapers/wallpaper-black
 
 [dark]
 ColorScheme=BreezeClassicDarkInactiveDimmed
@@ -92,7 +108,7 @@ Konsole=Breeze
 LookAndFeel=org.kde.breezedark.desktop
 Shadow=246,116,0
 VSCode=Simple Dark
-Wallpaper=/home/peter/Bilder/Wallpapers/ventura-dark.jpg
+Wallpaper=/home/peter/Bilder/Wallpapers/wallpaper-dark
 
 [darker]
 ColorScheme=KritaDarkOrange
@@ -103,7 +119,7 @@ Konsole=Breeze
 LookAndFeel=org.kde.breezedark.desktop
 Shadow=246,116,0
 VSCode=Simple Dark
-Wallpaper=/home/peter/Bilder/Wallpapers/ventura-dark.jpg
+Wallpaper=/home/peter/Bilder/Wallpapers/wallpaper-darker
 
 [light]
 ColorScheme=BreezeClassicLight
@@ -114,7 +130,7 @@ Konsole=BlackOnWhite
 LookAndFeel=org.kde.breeze.desktop
 Shadow=0,0,0
 VSCode=Default Light+
-Wallpaper=/home/peter/Bilder/Wallpapers/ventura.jpg
+Wallpaper=/home/peter/Bilder/Wallpapers/light
 
 EOF
 
@@ -290,15 +306,15 @@ fi
 
 #
 # apply values from config file
-switchWallpaper $(kreadconfig5 --file $CONFIG_FILE --group $1 --key Wallpaper)
-switchDesktoptheme $(kreadconfig5 --file $CONFIG_FILE --group $1 --key DesktopTheme)
-switchLookandfeel $(kreadconfig5 --file $CONFIG_FILE --group $1 --key LookAndFeel)
-switchGtktheme $(kreadconfig5 --file $CONFIG_FILE --group $1 --key GTKTheme)
-switchColorscheme $(kreadconfig5 --file $CONFIG_FILE --group $1 --key ColorScheme)
-switchShadow $(kreadconfig5 --file $CONFIG_FILE --group $1 --key Shadow)
-switchIcons $(kreadconfig5 --file $CONFIG_FILE --group $1 --key Icons)
-switchKonsole $(kreadconfig5 --file $CONFIG_FILE --group $1 --key Konsole)
-switchVSCode "$(kreadconfig5 --file $CONFIG_FILE --group $1 --key VSCode)"
+switchWallpaper $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key Wallpaper)
+switchDesktoptheme $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key DesktopTheme)
+switchLookandfeel $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key LookAndFeel)
+switchGtktheme $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key GTKTheme)
+switchColorscheme $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key ColorScheme)
+switchShadow $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key Shadow)
+switchIcons $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key Icons)
+switchKonsole $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key Konsole)
+switchVSCode "$(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key VSCode)"
 
 
 #

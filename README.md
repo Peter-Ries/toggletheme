@@ -20,3 +20,12 @@ Just put it somewhere in your path. Config file will be created on first invokat
 - task switcher theme
 - konsole profile (profiles need to be created first)
 - vs code
+
+## helpers to find installed schemes / themes
+
+```
+plasma-apply-desktoptheme --list-themes
+plasma-apply-lookandfeel -l
+plasma-apply-cursortheme --list-themes
+plasma-apply-colorscheme --list-schemes
+```
