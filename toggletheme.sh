@@ -106,7 +106,7 @@ GTKTheme=Breeze
 Icons=breeze-dark
 Konsole=Breeze
 LookAndFeel=org.kde.breezedark.desktop
-Shadow=246,116,0
+Shadow=61,174,233
 VSCode=Simple Dark
 Wallpaper=/home/peter/Bilder/Wallpapers/wallpaper-dark
 
@@ -254,7 +254,7 @@ switchVSCode () {
         #
         # modify settings directly with sed in ~/.config/Code/User/settings.json
         echo ::: Switch VSCode Theme to $1
-        sed -i -e "s/\"workbench.colorTheme.*$/\"workbench.colorTheme\": \"$1\",/" ~/.config/Code/User/settings.json
+        sed -i -e "s/\"workbench.colorTheme\":.*$/\"workbench.colorTheme\": \"$1\",/" ~/.config/Code/User/settings.json
     fi
 }
 
