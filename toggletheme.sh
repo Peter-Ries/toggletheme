@@ -306,13 +306,13 @@ fi
 
 #
 # apply values from config file
-switchWallpaper $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key Wallpaper)
 switchDesktoptheme $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key DesktopTheme)
 switchLookandfeel $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key LookAndFeel)
 switchGtktheme $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key GTKTheme)
 switchColorscheme $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key ColorScheme)
 switchShadow $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key Shadow)
 switchIcons $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key Icons)
+switchWallpaper $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key Wallpaper)
 switchKonsole $(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key Konsole)
 switchVSCode "$(kreadconfig5 --file $CONFIG_FILE --group $NEW_THEME --key VSCode)"
 
