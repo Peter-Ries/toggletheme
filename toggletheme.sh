@@ -115,9 +115,9 @@ ColorScheme=FlatRemixBlueDark
 DesktopTheme=default
 GTKTheme=Breeze
 Icons=breeze-dark
-Konsole=Breeze
+Konsole=FlatRemixBlueDark
 LookAndFeel=org.kde.breezedark.desktop
-Shadow=246,116,0
+Shadow=39,119,255
 VSCode=Atom One Dark
 Wallpaper=/home/peter/Bilder/Wallpapers/wallpaper-darker
 
