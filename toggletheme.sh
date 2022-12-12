@@ -111,14 +111,14 @@ VSCode=Simple Dark
 Wallpaper=/home/peter/Bilder/Wallpapers/wallpaper-dark
 
 [darker]
-ColorScheme=KritaDarkOrange
+ColorScheme=FlatRemixBlueDark
 DesktopTheme=default
 GTKTheme=Breeze
 Icons=breeze-dark
 Konsole=Breeze
 LookAndFeel=org.kde.breezedark.desktop
 Shadow=246,116,0
-VSCode=Simple Dark
+VSCode=Atom One Dark
 Wallpaper=/home/peter/Bilder/Wallpapers/wallpaper-darker
 
 [light]
